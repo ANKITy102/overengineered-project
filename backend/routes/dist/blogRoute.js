@@ -1,0 +1,17 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var authMiddleware_1 = require("../middleware/authMiddleware");
+var blogController_1 = require("../controller/blogController");
+var router = express_1["default"].Router();
+router.post("/create", authMiddleware_1["default"], blogController_1.createBlog);
+router.post("/update", authMiddleware_1["default"], blogController_1.updateBlog);
+router.get("/getblogbyId/:blogId", authMiddleware_1["default"], blogController_1.getBlogById);
+router.get("/getuserblog", authMiddleware_1["default"], blogController_1.getUserBlog);
+router["delete"]("/delete/:blogId", authMiddleware_1["default"], blogController_1.deleteBlog);
+router.post("/likeblog", authMiddleware_1["default"], blogController_1.likeBlog);
+router.post("/dislikeblog", authMiddleware_1["default"], blogController_1.dislikeBlog);
+router.get("/getblogs", blogController_1.getAllBlogs);
+router.get("/getblogsexceptuser", authMiddleware_1["default"], blogController_1.getAllBlogsExceptUser);
+router.post("/getisLiked", authMiddleware_1["default"], blogController_1.isLikedBlog);
+exports["default"] = router;
